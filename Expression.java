@@ -1,8 +1,11 @@
+import java.io.Serializable;
+import java.util.Formattable;
+import java.util.Formatter;
 import java.util.regex.*;
 /**
  * Created by yuki_yanagi on 2014/04/17.
  */
-public class Expression {
+public class Expression{
     String expression;
 
     /**
@@ -14,6 +17,13 @@ public class Expression {
         this.expression = expression;
     }
 
+    @Override public String toString(){
+        return expression;
+    }
+    @Override public boolean equals(Object obj){
+        return (expression == ((Expression)obj).expression);
+    }
+
     /**
      * if expression has parentheses, return true
      * @return
@@ -22,10 +32,6 @@ public class Expression {
         Pattern pattern = Pattern.compile("[(][0-9¥+¥-¥*/]+[)]");
         Matcher matcher = pattern.matcher(expression);
         return matcher.find() ? true : false;
-    }
-
-    public String toString(){
-        return expression;
     }
 
     public String expression(String expression){
@@ -54,6 +60,7 @@ public class Expression {
     /**
      * replace parentheses to %s, and add expression into list
      * @return
+     * @throws IllegalArgumentException
      */
     public String[] extractMinimumParentheses(){
         Pattern pattern = Pattern.compile("[(][0-9¥+¥-¥*/]+[)]");
@@ -66,13 +73,8 @@ public class Expression {
             }
         }
         else {
-            throw new IllegalStateException("No match found.");
+            throw new IllegalArgumentException("No match found.");
         }
-
-
         return new String[]{ };
     }
-
-
-
 }

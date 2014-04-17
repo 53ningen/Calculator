@@ -2,44 +2,43 @@
  * Created by yuki_yanagi on 2014/04/17.
  */
 
+import java.util.Objects;
+
 /**
  * Order of operations
  * 1. ()    parentheses
  * 2. * /   multiplication division
  * 3. + -   addition subtraction
  */
-public class Calculator {
-    private Expression expression;
-
+public class Calculator{
     /**
-     * constructor of this class
-     * convert arguments to mathematical expression
+     * running calculation and return fraction
      * @param args
+     * @return
      */
-    Calculator(String[] args) {
-        expression = new Expression(argsToExpression(args));
-    }
+    public static String run(String[] args) {
+        Expression expression = new Expression(argsToExpression(args));
 
-    /**
-     * running calculation
-     */
-    public void run() {
-        //括弧の処理
+        //remove brackets
         while(expression.hasParentheses()){
-            System.out.println();
+
         }
-
-
-        //
+        return "";
     }
 
+    public static String run(String[] args, boolean useFixedPointRepresentation){
+        if(!useFixedPointRepresentation)
+            return run(args);
+
+        return "";
+    }
     /**
      * convert arguments to mathematical expression
      *
      * @param args
      * @return expression
      */
-    private String argsToExpression(String[] args) {
+    private static String argsToExpression(String[] args) {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < args.length; i++)
@@ -47,8 +46,6 @@ public class Calculator {
 
         return builder.toString();
     }
-
-
 
     /**
      * if expression can calculate, return true

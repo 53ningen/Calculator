@@ -47,8 +47,11 @@ public class Fraction {
      * toString method of this class
      * @return string expresses instance
      */
-    public String toString(){
+    @Override public String toString(){
         return String.format("%d/%d", numerator, denominator);
+    }
+    @Override public boolean equals(Object obj){
+        return this.toString().equals(((Fraction)obj).toString());
     }
 
     //##############################################################
@@ -99,7 +102,7 @@ public class Fraction {
     }
 
     //##############################################################
-    //##############################################################
+    //#　start static operation methods
     //##############################################################
 
     /**
@@ -150,7 +153,7 @@ public class Fraction {
     }
 
     //##############################################################
-    //##############################################################
+    //# end static operation methods
     //##############################################################
 
     /**

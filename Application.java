@@ -4,20 +4,23 @@
 public class Application {
 
     public static boolean isDebug = true;
-    private static boolean useDecimal = false;
+    private static boolean usesDecimal = false;
 
     public static void main(String[] args){
         args = removeOptionFromArgs(args);
 
-        Calculator calc = new Calculator(args);
-        calc.run();
+        String calculatedValue = usesDecimal ? Calculator.run(args, true) : Calculator.run(args);
+        System.out.println(calculatedValue);
+
         System.exit(0);
     }
 
     /**
-     * todo: inappropriately method name
-     * checking command line arguments
+     * checking command line arguments.
+     * if having command line option,
+     * removing it and return mathematical expression
      * @param args
+     * @return mathematical expression
      */
     private static String[] removeOptionFromArgs(String[] args){
         // debug
@@ -35,7 +38,7 @@ public class Application {
 
         // when using -d option, return decimal calculated value
         if(args[0].equals("-d")) {
-            useDecimal = true;
+            usesDecimal = true;
             args[0] = "";
             return args;
         }
